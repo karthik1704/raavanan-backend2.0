@@ -39,6 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     ## 3-party apps
     "rest_framework",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth.registration",
+    "allauth.socialaccount.providers.google",
     # apps
     "accounts",
 ]
@@ -134,7 +142,40 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ##
 AUTH_USER_MODEL = "accounts.MyUser"
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://192.168.1.12:3000",
+    "https://www.raavananstore.com",
+    "https://raavananstore.com",
+]
+
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "accounts.backend.EmailorPhoneBackend",
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ],
+}
+
+# All Auth
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+# ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+SITE_ID = 1
+
+# JWT Config's
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = "raavanan"
+JWT_AUTH_REFRESH_COOKIE = "raavanan-refresh"
