@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     ## 3-party apps
     "rest_framework",
+    "treebeard",
     # apps
     "accounts.apps.AccountsConfig",
+    "categories",
 ]
 
 MIDDLEWARE = [
