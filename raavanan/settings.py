@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "modeltranslation",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -47,8 +48,10 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "dj_rest_auth.registration",
     "allauth.socialaccount.providers.google",
+    "treebeard",
     # apps
-    "accounts",
+    "accounts.apps.AccountsConfig",
+    "categories",
 ]
 
 MIDDLEWARE = [
@@ -123,6 +126,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+gettext = lambda s: s
+LANGUAGES = (
+    ("ta", gettext("Tamil")),
+    ("en", gettext("English")),
+)
+MODELTRANSLATION_DEFAULT_LANGUAGE = "ta"
+MODELTRANSLATION_LANGUAGES = ("ta", "en")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

@@ -64,3 +64,6 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     avatar = models.ImageField()
     date_of_birth = models.DateField(_("date of birth"), blank=True, null=True)
+
+    def __str__(self) -> str:
+        return self.user.email
